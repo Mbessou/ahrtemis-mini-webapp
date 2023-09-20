@@ -1,0 +1,221 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Bienvenue sur la documentation de l'API aHRtemis. Vous trouverez ici toutes les routes ainsi que leur fonctionnement afin que vous puissiez les intégrer des vos différentes applications client-side",
+        "version": "1.0",
+        "title": "API aHRtemis",
+        "contact": {
+            "email": "m.bessou.pro@gmail.com"
+        }
+    },
+    "tags": [
+        {
+            "name": "Contacts",
+            "description": "Endpoint Contact comprenant toutes les routes"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/contacts": {
+            "get": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Méthode pour récupérer tous les contacts",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Liste de tous les contacts."
+                    },
+                    "204": {
+                        "description": "Liste des contacts vide."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Méthode pour créer un contact",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Contact créé."
+                    },
+                    "400": {
+                        "description": "Champ obligatoire manquant (email)"
+                    }
+                }
+            }
+        },
+        "/contacts/email/{email}": {
+            "get": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Méthode pour récupérer un contact grâce à son email",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "L'email du contact à récupérer",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Liste de tous les contacts."
+                    },
+                    "204": {
+                        "description": "Aucun contact ne correspond à cet email."
+                    },
+                    "400": {
+                        "description": "Email invalide ou manquant"
+                    }
+                }
+            }
+        },
+        "/contacts/{id}": {
+            "get": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Obtenir les informations d'un contact en fonction d'un id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "L'id du contact à récupérer",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Le contact correspondant."
+                    },
+                    "204": {
+                        "description": "Aucun contact ne correspond à cet id."
+                    },
+                    "400": {
+                        "description": "Id invalide ou manquant"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Modifier les informations d'un contact en fonction d'un id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "L'id du contact à modifier",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Le contact correctement modifié."
+                    },
+                    "204": {
+                        "description": "Aucun contact ne correspond à cet id."
+                    },
+                    "400": {
+                        "description": "Id invalide ou manquant | Email manquant dans le body"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Supprimer un contact en fonction d'un id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "L'id du contact à supprimer",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Le contact est supprimé."
+                    },
+                    "400": {
+                        "description": "Id invalide ou manquant"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Contacts": {
+            "type": "object",
+            "required": [
+                "email"
+            ],
+            "properties": {
+                "firstname": {
+                    "type": "string"
+                },
+                "lastname": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "age": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}
