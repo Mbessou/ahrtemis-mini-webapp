@@ -1,10 +1,10 @@
-const express = require('express')
-const app = express()
-const port = 3000
-const router = require('./routes/contact.routes')
+const express = require('express');
+const app = express();
+const port = process.env.BACKEND_PORT;
+const router = require('./routes/contact.routes');
 
-app.use('/', router)
+app.use('/', router);
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+app.listen(port || 4000, () => {
+  console.log(`Example app listening on port ${port}`);
+});
