@@ -4,10 +4,10 @@ services:
   front:
     build:
       context: ./front
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.dev
     container_name: my-frontend
     ports:
-      - "3000:3000"
+      - "8000:8000"
     depends_on:
       - back
   back:
