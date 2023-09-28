@@ -4,17 +4,17 @@ services:
   front:
     build:
       context: ./front
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.dev
     container_name: my-frontend
     ports:
-      - "3000:3000"
+      - "8000:8000"
     depends_on:
       - back
   back:
     image: node:16
     container_name: my-backend
     working_dir: /app
-    command: ["node", "index.js"]
+    command: [ "node", "index.js" ]
     ports:
       - "4000:4000"
     volumes:
@@ -23,18 +23,18 @@ services:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
-      POSTGRES_HOST: 127.0.0.1
+      POSTGRES_HOST: db
       POSTGRES_PORT: 5432
       BACKEND_PORT: 4000
     depends_on:
-      - postgres
-  postgres:
+      - db
+  db:
     image: postgres:latest
-    container_name: my-postgres
+    container_name: ahrtemis-postgres
     environment:
       POSTGRES_PASSWORD: root
     ports:
-      - "5432:5432"
+      - "5434:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
   swagger-ui:
