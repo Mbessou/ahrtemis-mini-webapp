@@ -11,7 +11,6 @@ import * as contactService from '../services/contacts';
 import { Contact } from '../models/contact';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import '../assets/ContactDialog.css';
 import { VALIDATE_EMAIL, VALIDATE_PHONENUMBER } from '../utils/validation';
 
 export default function ContactDialog(props: { open: boolean, onClose: () => void, create: boolean, onValidate: (success: boolean) => void, onDelete: (success: boolean) => void, baseContact?: Contact }) {
